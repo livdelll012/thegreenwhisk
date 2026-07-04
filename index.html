@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Green Whisk: Syrian-Puerto Rican Matcha Fusion</title>
+  <meta name="description" content="The Green Whisk: a matcha-inspired recipe journal blending Syrian sweets, Puerto Rican comfort flavors, and notes of New Haven study-cafe nostalgia." />
+  <meta property="og:title" content="The Green Whisk" />
+  <meta property="og:description" content="A Syrian-Puerto Rican matcha fusion recipe journal: pistachio, guava, coconut, cardamom, rose, and green tea." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%B5%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Georgia&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f8f4e8;
+      --paper: #fffaf0;
+      --matcha: #7f9f63;
+      --deep: #2f4a34;
+      --sage: #dfe9cf;
+      --soft-sage: #edf3df;
+      --guava: #d98580;
+      --pistachio: #b7c99a;
+      --ink: #273426;
+      --muted: #4c5a46;
+      --shadow: 0 18px 45px rgba(47, 74, 52, 0.12);
+      --radius: 24px;
+      --focus: #1c6b8c;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    .bg-blobs {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.55;
+      background: radial-gradient(circle at 35% 35%, rgba(127, 159, 99, 0.75), rgba(183, 201, 154, 0.35) 60%, transparent 75%);
+      will-change: transform;
+    }
+
+    .blob-1 {
+      width: 480px;
+      height: 480px;
+      top: -10%;
+      left: -8%;
+      animation: drift1 42s ease-in-out infinite;
+    }
+    .blob-2 {
+      width: 360px;
+      height: 360px;
+      top: 55%;
+      left: 65%;
+      background: radial-gradient(circle at 40% 40%, rgba(183, 201, 154, 0.7), rgba(127, 159, 99, 0.3) 60%, transparent 75%);
+      animation: drift2 50s ease-in-out infinite;
+    }
+    .blob-3 {
+      width: 300px;
+      height: 300px;
+      top: 20%;
+      left: 78%;
+      background: radial-gradient(circle at 45% 45%, rgba(223, 233, 207, 0.8), rgba(127, 159, 99, 0.28) 60%, transparent 75%);
+      animation: drift3 36s ease-in-out infinite;
+    }
+    .blob-4 {
+      width: 420px;
+      height: 420px;
+      top: 75%;
+      left: 5%;
+      animation: drift4 55s ease-in-out infinite;
+    }
+    .blob-5 {
+      width: 260px;
+      height: 260px;
+      top: 5%;
+      left: 45%;
+      background: radial-gradient(circle at 50% 50%, rgba(183, 201, 154, 0.6), rgba(127, 159, 99, 0.25) 60%, transparent 75%);
+      animation: drift5 46s ease-in-out infinite;
+    }
+
+    @keyframes drift1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(60px, 90px) scale(1.12); }
+      66% { transform: translate(-30px, 40px) scale(0.94); }
+    }
+    @keyframes drift2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-80px, -60px) scale(1.15); }
+    }
+    @keyframes drift3 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      40% { transform: translate(-50px, 70px) scale(0.9); }
+      75% { transform: translate(30px, -30px) scale(1.08); }
+    }
+    @keyframes drift4 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      30% { transform: translate(70px, -50px) scale(1.08); }
+      65% { transform: translate(20px, 60px) scale(0.95); }
+    }
+    @keyframes drift5 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-40px, 80px) scale(1.1); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .blob { animation: none !important; }
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(217, 133, 128, 0.16), transparent 28rem),
+        radial-gradient(circle at top right, rgba(127, 159, 99, 0.18), transparent 30rem),
+        var(--cream);
+    }
+
+    a { color: inherit; }
+
+    a:focus-visible,
+    button:focus-visible,
+    .recipe-card:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+
+    h1, h2, h3, .display {
+      font-family: "Fraunces", Georgia, serif;
+      font-optical-sizing: auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      padding: 14px 18px;
+      background: rgba(248, 244, 232, 0.94);
+      border-bottom: 1px solid rgba(47, 74, 52, 0.12);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nav a {
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--deep);
+      padding: 9px 15px;
+      border-radius: 999px;
+      background: rgba(223, 233, 207, 0.72);
+      border: 1px solid rgba(47, 74, 52, 0.10);
+      transition: background 150ms ease, transform 150ms ease;
+    }
+
+    .nav a:hover { background: var(--pistachio); }
+
+    .nav a.active {
+      background: var(--deep);
+      color: white;
+      border-color: var(--deep);
+    }
+
+    .hero {
+      min-height: 88vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 70px 22px;
+    }
+
+    .hero-inner { max-width: 950px; margin: 0 auto; }
+
+    h1 {
+      margin: 0;
+      font-weight: 600;
+      font-size: clamp(3.6rem, 12vw, 9rem);
+      line-height: 0.95;
+      color: var(--deep);
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      max-width: 690px;
+      margin: 24px auto 0;
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 12px 20px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-weight: 800;
+      border: 1px solid rgba(47, 74, 52, 0.12);
+      cursor: pointer;
+      transition: transform 150ms ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+
+    .button.primary { background: var(--deep); color: white; }
+    .button.secondary { background: var(--sage); color: var(--deep); }
+
+    section { padding: 70px 22px; scroll-margin-top: 76px; }
+
+    .section-inner { max-width: 1120px; margin: 0 auto; }
+
+    .section-title {
+      margin: 0 0 14px;
+      font-weight: 600;
+      color: var(--deep);
+      font-size: clamp(2.1rem, 5vw, 4rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      text-align: center;
+    }
+
+    .section-intro {
+      max-width: 760px;
+      margin: 0 auto 20px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .about-card {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: clamp(28px, 5vw, 52px);
+      border-radius: var(--radius);
+      background: rgba(255, 250, 240, 0.86);
+      border: 1px solid rgba(47, 74, 52, 0.12);
+      box-shadow: var(--shadow);
+      text-align: left;
+    }
+
+    .about-card .section-title {
+      text-align: left;
+    }
+
+    .about-card p {
+      font-size: 1.08rem;
+      line-height: 1.78;
+      color: var(--muted);
+      margin: 0 0 18px;
+    }
+    .about-card p:last-child { margin-bottom: 0; }
+
+    /* Filter groups (flavor, difficulty, dietary) */
+    .filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filter-button {
+      cursor: pointer;
+      border: 1px solid rgba(47, 74, 52, 0.12);
+      border-radius: 999px;
+      background: var(--paper);
+      color: var(--deep);
+      padding: 10px 15px;
+      font-family: Arial, sans-serif;
+      font-weight: 800;
+      font-size: 0.88rem;
+    }
+
+    .filter-button.active,
+    .filter-button:hover { background: var(--deep); color: white; }
+
+    /* ---- Matcha dot indicator (real CSS dots, not a font glyph) ---- */
+    .dot-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(47, 74, 52, 0.22);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .dot.filled { background: var(--deep); }
+    .tag-matcha {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+      gap: 18px;
+    }
+
+    .recipe-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 320px;
+      padding: 22px;
+      border-radius: var(--radius);
+      background: rgba(255, 250, 240, 0.9);
+      border: 1px solid rgba(47, 74, 52, 0.12);
+      box-shadow: 0 14px 32px rgba(47, 74, 52, 0.09);
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .recipe-card:hover,
+    .recipe-card:focus-visible {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px rgba(47, 74, 52, 0.14);
+    }
+
+    .recipe-card.featured {
+      grid-column: span 2;
+      background: linear-gradient(135deg, rgba(183, 201, 154, 0.28), rgba(255, 250, 240, 0.92));
+    }
+
+    @media (max-width: 640px) {
+      .recipe-card.featured { grid-column: span 1; }
+    }
+
+    .recipe-card h3 {
+      margin: 8px 0 6px;
+      font-weight: 600;
+      color: var(--deep);
+      font-size: 1.4rem;
+      line-height: 1.15;
+    }
+
+    .meta-row {
+      font-family: Arial, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin: 0 0 10px;
+    }
+
+    .recipe-card p.blurb {
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0 0 16px;
+    }
+
+    .tags { display: flex; gap: 7px; flex-wrap: wrap; margin-top: auto; align-items: center; }
+
+    .tag {
+      font-family: Arial, sans-serif;
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: var(--deep);
+      background: var(--soft-sage);
+      border: 1px solid rgba(47, 74, 52, 0.10);
+      border-radius: 999px;
+      padding: 6px 9px;
+    }
+
+    .tag.tag-matcha { background: var(--pistachio); }
+    .tag.tag-diet { background: var(--guava); color: white; border-color: transparent; }
+
+    .no-results {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: 1.05rem;
+      border: 1px dashed rgba(47, 74, 52, 0.25);
+      border-radius: var(--radius);
+    }
+    .no-results.show { display: block; }
+    .no-results svg {
+      display: block;
+      margin: 0 auto 12px;
+      width: 44px;
+      height: 44px;
+    }
+
+    .allergen-line {
+      font-family: Arial, sans-serif;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin: 16px 0 4px;
+    }
+    .allergen-line .label {
+      font-weight: 800;
+      color: var(--deep);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.7rem;
+      margin-right: 6px;
+    }
+
+    /* ---- Compact themed filter panel ---- */
+    .filter-panel {
+      max-width: 900px;
+      margin: 0 auto 34px;
+      padding: 18px 22px 22px;
+      border-radius: var(--radius);
+      background: rgba(255, 250, 240, 0.9);
+      border: 1px solid rgba(47, 74, 52, 0.14);
+      box-shadow: var(--shadow);
+    }
+
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(47, 74, 52, 0.12);
+    }
+
+    .filter-tab {
+      position: relative;
+      cursor: pointer;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 9px 16px;
+      transition: background 150ms ease, color 150ms ease;
+    }
+
+    .filter-tab:hover { background: var(--soft-sage); color: var(--deep); }
+
+    .filter-tab.active {
+      background: var(--deep);
+      color: white;
+    }
+
+    .filter-tab .tab-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--guava);
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    .filter-pane[hidden] { display: none; }
+
+    .filter-pane .filters { margin-bottom: 0; justify-content: center; }
+
+    .matcha-dot-button {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      padding: 9px 16px;
+    }
+    .matcha-dot-button .dot-row { gap: 5px; }
+    .matcha-dot-button .dot { width: 9px; height: 9px; }
+    .matcha-dot-button.active .dot { background: rgba(255, 255, 255, 0.35); }
+    .matcha-dot-button.active .dot.filled { background: white; }
+    .matcha-dot-button .dot-button-label {
+      font-family: Arial, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .season-grid, .playlist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+    }
+
+    .season-card {
+      padding: 24px;
+      border-radius: var(--radius);
+      background: rgba(255, 250, 240, 0.88);
+      border: 1px solid rgba(47, 74, 52, 0.12);
+      box-shadow: 0 12px 28px rgba(47, 74, 52, 0.08);
+      text-align: center;
+      cursor: pointer;
+      font-family: inherit;
+      width: 100%;
+      transition: transform 180ms ease;
+    }
+    .season-card:hover, .season-card:focus-visible { transform: translateY(-3px); }
+
+    .playlist-card {
+      padding: 24px;
+      border-radius: var(--radius);
+      background: rgba(255, 250, 240, 0.88);
+      border: 1px solid rgba(47, 74, 52, 0.12);
+      box-shadow: 0 12px 28px rgba(47, 74, 52, 0.08);
+      text-align: center;
+    }
+
+    .season-card h3, .playlist-card h3 {
+      margin: 0 0 10px;
+      font-weight: 600;
+      color: var(--deep);
+    }
+
+    .season-card p, .playlist-card p { color: var(--muted); line-height: 1.55; margin: 0; }
+
+    .season-card .hint {
+      display: block;
+      margin-top: 10px;
+      font-family: Arial, sans-serif;
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: var(--matcha);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .track-list {
+      list-style: none;
+      margin: 14px 0 0;
+      padding: 0;
+      text-align: left;
+      font-family: Arial, sans-serif;
+      font-size: 0.92rem;
+    }
+    .track-list li {
+      padding: 8px 0;
+      border-top: 1px solid rgba(47, 74, 52, 0.10);
+      color: var(--ink);
+    }
+    .track-list li:first-child { border-top: none; }
+    .track-list .artist { color: var(--muted); font-style: italic; }
+
+    footer {
+      text-align: center;
+      padding: 38px 20px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .back-to-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 90;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--deep);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 24px rgba(47, 74, 52, 0.28);
+      transition: opacity 200ms ease;
+    }
+    .back-to-top.show { display: flex; }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(39, 52, 38, 0.55);
+      backdrop-filter: blur(3px);
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 18px;
+      z-index: 200;
+      overflow-y: auto;
+    }
+    .modal-overlay.show { display: flex; }
+
+    .modal {
+      background: var(--paper);
+      border-radius: var(--radius);
+      max-width: 640px;
+      width: 100%;
+      padding: clamp(24px, 5vw, 42px);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(47, 74, 52, 0.2);
+      background: var(--soft-sage);
+      color: var(--deep);
+      font-size: 1.1rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .modal h3 {
+      margin: 8px 40px 4px 0;
+      font-size: 1.8rem;
+      color: var(--deep);
+      font-weight: 600;
+    }
+
+    .modal .meta-row { margin-bottom: 12px; }
+
+    .modal .blurb { color: var(--muted); line-height: 1.6; margin: 0 0 14px; }
+
+    .origin-note {
+      font-style: italic;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0 0 18px;
+      padding-left: 14px;
+      border-left: 3px solid var(--pistachio);
+    }
+    .origin-note .label {
+      font-style: normal;
+      font-family: Arial, sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.7rem;
+      color: var(--matcha);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .modal h4 {
+      font-family: Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      color: var(--matcha);
+      font-weight: 800;
+      margin: 22px 0 10px;
+    }
+
+    .modal ul, .modal ol { margin: 0; padding-left: 20px; color: var(--ink); line-height: 1.7; }
+    .modal ul li, .modal ol li { margin-bottom: 6px; }
+
+    .substitution-note {
+      background: var(--soft-sage);
+      border-radius: 14px;
+      padding: 14px 16px;
+      color: var(--ink);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .servings-control {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: Arial, sans-serif;
+      font-weight: 800;
+      color: var(--deep);
+    }
+    .servings-control .step-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(47, 74, 52, 0.25);
+      background: var(--sage);
+      color: var(--deep);
+      font-size: 1rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .servings-control .step-btn:hover { background: var(--pistachio); }
+    .servings-control .servings-value { min-width: 90px; text-align: center; }
+
+    @media (max-width: 620px) {
+      .hero { min-height: 78vh; }
+      h1 { font-size: clamp(3.2rem, 16vw, 5.5rem); }
+      .nav a { font-size: 0.82rem; padding: 8px 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-blobs" aria-hidden="true">
+    <span class="blob blob-1"></span>
+    <span class="blob blob-2"></span>
+    <span class="blob blob-3"></span>
+    <span class="blob blob-4"></span>
+    <span class="blob blob-5"></span>
+  </div>
+
+  <header class="topbar">
+    <nav class="nav" aria-label="Main navigation" id="mainNav">
+      <a href="#about" data-section="about">About</a>
+      <a href="#recipes" data-section="recipes">Recipes</a>
+      <a href="#seasons" data-section="seasons">Seasons</a>
+      <a href="#playlist" data-section="playlist">Playlist</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <h1>The Green<br>Whisk</h1>
+        <p class="subtitle">
+          A matcha-green recipe journal blending Syrian sweets, Puerto Rican comfort flavors, and New Haven study-cafe nostalgia.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#recipes">Browse recipes</a>
+          <a class="button secondary" href="#about">Read the story</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-inner">
+        <div class="about-card">
+          <h2 class="section-title">A fusion table, set in matcha green</h2>
+           </p>
+          <p>
+
+          <p>
+            The Green Whisk started with a Syrian kitchen, a Puerto Rican culinary tradition, and a small matcha habit picked up while studying in New Haven, Connecticut. None of those worlds usually share a table, so this collection imagines what happens when they do.
+          </p>
+          <p>
+            Syrian baking invites aromatic semolina, orange blossom, rose, and pistachio. Puerto Rican cooking brings coconut, coffee, and the slow-simmered comfort of coquito and arroz con leche. Matcha ties them together in a quiet, earthy, thread. Each recipe is a deliberate pairing to discover where these flavors can discover agreement with each other.
+          </p>
+          <p>
+            Use the menu below to browse by flavor, effort, or dietary fit, or jump into the seasonal collections if you'd rather start from a feeling than an ingredient list.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="recipes">
+      <div class="section-inner">
+        <h2 class="section-title">The menu</h2>
+        <p class="section-intro">A menu of Syrian and Puerto Rican desserts and drinks, each one reworked with matcha, from cozy baked pastries to refreshing iced drinks. Tap any card to open the full recipe.</p>
+
+        <div class="filter-panel">
+          <div class="filter-tabs" role="tablist" aria-label="Recipe filter categories">
+            <button class="filter-tab active" data-tab="flavor" role="tab" aria-selected="true">Flavor</button>
+            <button class="filter-tab" data-tab="matcha" role="tab" aria-selected="false">Matcha strength</button>
+            <button class="filter-tab" data-tab="effort" role="tab" aria-selected="false">Effort</button>
+            <button class="filter-tab" data-tab="dietary" role="tab" aria-selected="false">Dietary</button>
+          </div>
+
+          <div class="filter-pane" data-pane="flavor">
+            <div class="filters" role="group" aria-label="Filter by flavor (multiple selectable)" id="flavorFilterBar">
+              <button class="filter-button active" data-filter="all" aria-pressed="true">All</button>
+              <button class="filter-button" data-filter="sweet" aria-pressed="false">Sweet</button>
+              <button class="filter-button" data-filter="floral" aria-pressed="false">Floral</button>
+              <button class="filter-button" data-filter="creamy" aria-pressed="false">Creamy</button>
+              <button class="filter-button" data-filter="tart" aria-pressed="false">Tart</button>
+              <button class="filter-button" data-filter="earthy" aria-pressed="false">Earthy</button>
+              <button class="filter-button" data-filter="nutty" aria-pressed="false">Nutty</button>
+              <button class="filter-button" data-filter="umami" aria-pressed="false">Umami</button>
+              <button class="filter-button" data-filter="fruity" aria-pressed="false">Fruity</button>
+              <button class="filter-button" data-filter="citrus" aria-pressed="false">Citrus</button>
+            </div>
+          </div>
+
+          <div class="filter-pane" data-pane="matcha" hidden>
+            <div class="filters" role="group" aria-label="Filter by matcha strength" id="matchaFilterBar">
+              <button class="filter-button active" data-filter="all" aria-pressed="true">All</button>
+              <button class="filter-button matcha-dot-button" data-filter="1" aria-pressed="false" aria-label="Light matcha level"></button>
+              <button class="filter-button matcha-dot-button" data-filter="2" aria-pressed="false" aria-label="Medium matcha level"></button>
+              <button class="filter-button matcha-dot-button" data-filter="3" aria-pressed="false" aria-label="Strong matcha level"></button>
+            </div>
+          </div>
+
+          <div class="filter-pane" data-pane="effort" hidden>
+            <div class="filters" role="group" aria-label="Filter by difficulty" id="difficultyFilterBar">
+              <button class="filter-button active" data-filter="all" aria-pressed="true">All</button>
+              <button class="filter-button" data-filter="Easy" aria-pressed="false">Easy</button>
+              <button class="filter-button" data-filter="Medium" aria-pressed="false">Medium</button>
+              <button class="filter-button" data-filter="Advanced" aria-pressed="false">Advanced</button>
+            </div>
+          </div>
+
+          <div class="filter-pane" data-pane="dietary" hidden>
+            <div class="filters" role="group" aria-label="Filter by dietary fit" id="dietaryFilterBar">
+              <button class="filter-button active" data-filter="all" aria-pressed="true">All</button>
+              <button class="filter-button" data-filter="egg-free" aria-pressed="false">Egg-free</button>
+              <button class="filter-button" data-filter="dairy-free" aria-pressed="false">Dairy-free</button>
+              <button class="filter-button" data-filter="nut-free" aria-pressed="false">Nut-free</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="recipe-grid" id="recipeGrid" aria-live="polite"></div>
+        <div class="no-results" id="noResults" role="status">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="24" cy="24" r="22" stroke="#b7c99a" stroke-width="2"/>
+            <path d="M24 33c6-2 10-8 9-16-8-1-14 3-16 9-1 3 0 6 2 7 1 .5 3 .3 5 0z" fill="#dfe9cf" stroke="#7f9f63" stroke-width="1.5"/>
+            <path d="M24 33c0-6 1-12 5-16" stroke="#7f9f63" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          No recipes match this combination yet. Try clearing a filter or two.
+        </div>
+      </div>
+    </section>
+
+    <section id="seasons">
+      <div class="section-inner">
+        <h2 class="section-title">Seasonal collections</h2>
+        <p class="section-intro">If you'd rather start from a season or a mood than a specific dish, pick one below. It filters the menu above to match.</p>
+
+        <div class="season-grid">
+          <button class="season-card" data-tags="floral tart fruity">
+            <h3>Spring</h3>
+            <p>Rose, orange blossom, and guava: light, floral desserts for warming weather.</p>
+            <span class="hint">Filter the menu &rarr;</span>
+          </button>
+          <button class="season-card" data-tags="citrus tart">
+            <h3>Summer</h3>
+            <p>Coconut, lime, and iced matcha: bright, fruit-forward, and served cold.</p>
+            <span class="hint">Filter the menu &rarr;</span>
+          </button>
+          <button class="season-card" data-tags="earthy nutty umami">
+            <h3>Autumn</h3>
+            <p>Coffee, dates, and toasted pistachio: earthy, nutty flavors for cooler weather.</p>
+            <span class="hint">Filter the menu &rarr;</span>
+          </button>
+          <button class="season-card" data-tags="creamy sweet umami">
+            <h3>Winter</h3>
+            <p>Puddings, flan, and tres leches: rich, creamy, and slow to make.</p>
+            <span class="hint">Filter the menu &rarr;</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section id="playlist">
+      <div class="section-inner">
+        <h2 class="section-title">Brew while you bake</h2>
+        <p class="section-intro">Two short, curated pairings: one for starting the day, one for winding it down.</p>
+
+        <div class="playlist-grid">
+          <article class="playlist-card">
+            <h3>Morning</h3>
+            <p>Unhurried, warm, a little nostalgic, for a slow start and a first pot of tea.</p>
+            <ul class="track-list">
+              <li>Li Beirut <span class="artist">by Fairuz</span></li>
+              <li>Habaytak Bel Sayf <span class="artist">by Fairuz</span></li>
+              <li>Verde Luz <span class="artist">by Antonio Caban Vale</span></li>
+            </ul>
+          </article>
+          <article class="playlist-card">
+            <h3>Evening</h3>
+            <p>Low and steady, for the last bake of the day and whatever's simmering on the stove.</p>
+            <ul class="track-list">
+              <li>Holocene <span class="artist">by Bon Iver</span></li>
+              <li>River Flows in You <span class="artist">by Yiruma</span></li>
+              <li>Preciosa <span class="artist">by Rafael Hernandez</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    The Green Whisk. 2026.
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">&uarr;</button>
+
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <button class="modal-close" id="modalClose" aria-label="Close recipe">&#10005;</button>
+      <h3 id="modalTitle"></h3>
+      <div class="meta-row" id="modalMeta"></div>
+      <p class="blurb" id="modalBlurb"></p>
+      <div class="origin-note"><span class="label">Rooted in</span><span id="modalOrigin"></span></div>
+      <div class="tags"><span class="tag tag-matcha" id="modalLevel"></span><span class="tag tag-diet" id="modalDietTags"></span></div>
+      <p class="allergen-line"><span class="label">Contains</span><span id="modalAllergens"></span></p>
+
+      <h4>Servings</h4>
+      <div class="servings-control">
+        <button class="step-btn" id="servingsMinus" aria-label="Fewer servings">-</button>
+        <span class="servings-value" id="servingsValue"></span>
+        <button class="step-btn" id="servingsPlus" aria-label="More servings">+</button>
+      </div>
+
+      <h4>Ingredients</h4>
+      <ul id="modalIngredients"></ul>
+      <h4>Method</h4>
+      <ol id="modalSteps"></ol>
+      <h4>Substitution tip</h4>
+      <p class="substitution-note" id="modalSubstitution"></p>
+    </div>
+  </div>
+
+  <script>
+    // ---------- Recipe data (used for cards + modal detail) ----------
+    const recipes = [
+      {
+        id: "maamoul", title: "Guava Pistachio Matcha Ma'amoul",
+        blurb: "Semolina cookies with matcha dough, guava paste, pistachio, and a soft floral finish.",
+        level: 2, tags: ["sweet","nutty","floral","earthy"],
+        time: "50 min", difficulty: "Medium", diet: ["egg-free"],
+        baseServings: 20, servingsUnit: "cookies", servingsStep: 4,
+        origin: "Inspired by ma'amoul, the semolina cookies traditionally filled with dates, walnuts, or pistachios for Eid.",
+        substitution: "No orange blossom water? Rose water works as a floral swap in the same amount.",
+        allergens: ["Gluten", "Dairy", "Tree nuts"],
+        ingredients: ["2 cups fine semolina","1/2 cup butter, melted","2 tsp culinary matcha","1/2 cup guava paste, warmed soft","1/3 cup crushed pistachios","1 tbsp orange blossom water","1/2 cup powdered sugar, for dusting"],
+        steps: ["Combine semolina, butter, and matcha; rest the dough 2 hours.","Roll into balls and hollow the centers.","Fill with guava paste and pistachio, then seal and shape in a mold.","Bake at 350°F (175°C) for 18-20 minutes until pale gold.","Brush lightly with orange blossom water and dust with powdered sugar once cool."]
+      },
+      {
+        id: "muhallabia", title: "Matcha Coquito Muhallabia",
+        blurb: "A silky milk pudding inspired by coquito, coconut, cinnamon, and Syrian muhallabia.",
+        level: 1, tags: ["sweet","creamy"],
+        time: "20 min", difficulty: "Easy", diet: ["egg-free","nut-free"],
+        baseServings: 6, servingsUnit: "servings",
+        origin: "Inspired by muhallabia, a Levantine milk pudding often flavored with rose water or pistachio, crossed here with Puerto Rican coquito.",
+        substitution: "No fresh coconut flakes for topping? Toasted shredded coconut from a bag works the same way.",
+        allergens: ["Dairy"],
+        ingredients: ["2 cups coconut milk","1 cup whole milk","1/3 cup sugar","3 tbsp cornstarch","1 tsp matcha","1/2 tsp cinnamon","2 tbsp toasted coconut flakes, to serve"],
+        steps: ["Whisk cornstarch into a splash of cold milk until smooth.","Warm the coconut milk, milk, sugar, and cinnamon in a saucepan.","Stir in the cornstarch slurry and matcha; cook until thickened.","Pour into cups and chill at least 3 hours.","Top with toasted coconut before serving."]
+      },
+      {
+        id: "tresleches", title: "Matcha Baklava Tres Leches",
+        blurb: "Milk-soaked cake with pistachio, phyllo crunch, matcha cream, and orange blossom syrup.",
+        level: 2, tags: ["sweet","floral","creamy","nutty"],
+        time: "1 hr 10 min", difficulty: "Advanced", diet: [],
+        baseServings: 10, servingsUnit: "servings",
+        origin: "Inspired by tres leches cake, a Latin American classic, layered here with baklava's phyllo and pistachio.",
+        substitution: "No phyllo on hand? Crushed shortbread cookies give a similar crunch.",
+        allergens: ["Gluten", "Dairy", "Egg", "Tree nuts"],
+        ingredients: ["1 baked vanilla sponge cake","1 cup crisped phyllo, crushed","1/2 cup chopped pistachios","1 can evaporated milk","1 can condensed milk","1/2 cup heavy cream + 1 tsp matcha, whipped","2 tbsp orange blossom syrup"],
+        steps: ["Poke the cooled sponge cake all over.","Blend the three milks and pour slowly over the cake.","Chill 4 hours so the cake fully absorbs the milk.","Top with matcha whipped cream and crushed phyllo-pistachio mix.","Finish with a drizzle of orange blossom syrup."]
+      },
+      {
+        id: "quesitos", title: "Matcha Quesitos with Date Filling",
+        blurb: "Flaky Puerto Rican-style pastries with cream cheese, date paste, and matcha glaze.",
+        level: 1, tags: ["sweet","creamy","earthy"],
+        time: "45 min", difficulty: "Medium", diet: ["nut-free"],
+        baseServings: 12, servingsUnit: "pastries", servingsStep: 2,
+        origin: "Inspired by quesitos, the flaky Puerto Rican cream cheese pastries sold at panaderias.",
+        substitution: "Out of date paste? Softened Medjool dates mashed with a little water work just as well.",
+        allergens: ["Gluten", "Dairy", "Egg"],
+        ingredients: ["1 sheet puff pastry","8 oz cream cheese, softened","1/4 cup date paste","2 tbsp sugar","1 cup powdered sugar","1 tsp matcha","3 tsp milk, for glaze"],
+        steps: ["Beat cream cheese, date paste, and sugar until smooth.","Cut pastry into squares and add filling to each center.","Fold corners in and pinch to seal; brush with egg wash.","Bake at 400°F (200°C) for 18-20 minutes until golden.","Whisk powdered sugar, matcha, and milk into a glaze and drizzle over warm pastries."]
+      },
+      {
+        id: "atayef", title: "Matcha Atayef Pancakes",
+        blurb: "Mini stuffed pancakes with sweet ricotta, guava cream, and matcha honey drizzle.",
+        level: 2, tags: ["sweet","floral","tart","fruity"],
+        time: "40 min", difficulty: "Medium", diet: ["egg-free","nut-free"],
+        baseServings: 16, servingsUnit: "pancakes", servingsStep: 2,
+        origin: "Inspired by atayef, the stuffed mini pancakes made throughout Ramadan in Syria.",
+        substitution: "No ricotta? Fresh farmer's cheese or mascarpone can stand in.",
+        allergens: ["Gluten", "Dairy"],
+        ingredients: ["1 cup flour","1 tsp yeast","1 cup warm water","1 cup ricotta","3 tbsp guava jam","2 tbsp honey","1/2 tsp matcha"],
+        steps: ["Whisk flour, yeast, and warm water into a thin batter; rest 45 minutes.","Cook small rounds on a dry skillet until bubbles set, one side only.","Fold cooled pancakes around ricotta and a spoon of guava jam.","Warm honey with matcha until smooth.","Drizzle over the folded pancakes just before serving."]
+      },
+      {
+        id: "arroz", title: "Matcha Arroz con Leche with Cardamom",
+        blurb: "Puerto Rican rice pudding warmed with cardamom and finished with a gentle matcha swirl.",
+        level: 1, tags: ["creamy","earthy","sweet"],
+        time: "35 min", difficulty: "Easy", diet: ["egg-free","nut-free"],
+        baseServings: 6, servingsUnit: "servings",
+        origin: "Inspired by arroz con leche, the Puerto Rican rice pudding usually finished with cinnamon.",
+        substitution: "No whole cardamom pods? A pinch of ground cardamom works, added a little later so it doesn't turn bitter.",
+        allergens: ["Dairy"],
+        ingredients: ["1 cup short-grain rice","4 cups whole milk","1/2 cup sugar","4 cardamom pods, crushed","1 cinnamon stick","1 tsp matcha, whisked with 2 tbsp warm water"],
+        steps: ["Simmer rice with 2 cups water until just tender.","Add milk, sugar, cardamom, and cinnamon; simmer low, stirring often.","Cook 25-30 minutes until thick and creamy.","Remove whole spices.","Swirl the matcha paste through just before serving, warm or chilled."]
+      },
+      {
+        id: "kanafeh", title: "Matcha Kanafeh Bread Pudding",
+        blurb: "Crisp kataifi, sweet cheese, bread pudding custard, and matcha condensed milk.",
+        level: 2, tags: ["umami","sweet","creamy"],
+        time: "50 min", difficulty: "Medium", diet: ["nut-free"],
+        baseServings: 8, servingsUnit: "servings",
+        origin: "Inspired by kanafeh, the shredded-pastry cheese dessert popular across Syria and the wider Levant.",
+        substitution: "No kataifi available? Shredded phyllo tossed in butter is a close stand-in.",
+        allergens: ["Gluten", "Dairy", "Egg"],
+        ingredients: ["2 cups shredded kataifi","1/4 cup melted butter","1 cup mozzarella or soft cheese","2 eggs","1 cup milk","1/3 cup condensed milk + 1 tsp matcha"],
+        steps: ["Toss kataifi with melted butter and press half into a baking dish.","Layer cheese over the base, then top with remaining kataifi.","Whisk eggs and milk and pour evenly over the top.","Bake at 350°F (175°C) for 30-35 minutes until golden and set.","Warm the condensed milk with matcha and pour over just before serving."]
+      },
+      {
+        id: "basbousa", title: "Coconut Matcha Basbousa",
+        blurb: "Semolina cake with coconut, lime zest, matcha syrup, and a soft tropical edge.",
+        level: 2, tags: ["sweet","tart","citrus"],
+        time: "40 min", difficulty: "Easy", diet: ["egg-free","nut-free"],
+        baseServings: 12, servingsUnit: "pieces", servingsStep: 2,
+        origin: "Inspired by basbousa, the syrup-soaked semolina cake found across Syria and the Levant.",
+        substitution: "No fresh lime? Bottled lime juice and a little extra zest from an orange work fine.",
+        allergens: ["Gluten", "Dairy"],
+        ingredients: ["1 1/2 cups semolina","1/2 cup shredded coconut","1/2 cup yogurt","1/2 cup sugar","1 lime, zested","1 cup sugar + 1 cup water + 1 tsp matcha, for syrup"],
+        steps: ["Mix semolina, coconut, yogurt, sugar, and lime zest into a thick batter.","Spread into a greased pan and score into diamonds.","Bake at 350°F (175°C) for 25-30 minutes until golden.","Simmer sugar, water, and matcha into a light syrup.","Pour the warm syrup over the hot cake and let it soak in fully."]
+      },
+      {
+        id: "latte", title: "Iced Guava Rose Matcha Latte",
+        blurb: "A layered iced drink with guava, rose, coconut milk, and bright green matcha.",
+        level: 2, tags: ["sweet","tart","floral"],
+        time: "10 min", difficulty: "Easy", diet: ["egg-free","dairy-free","nut-free"],
+        baseServings: 1, servingsUnit: "drink", servingsStep: 0.5, minServings: 0.5,
+        origin: "Inspired by the guava and rose flavors common in both Syrian floral syrups and Puerto Rican fruit drinks.",
+        substitution: "No coconut milk on hand? Any milk of choice layers just as well.",
+        allergens: ["Coconut"],
+        ingredients: ["2 tbsp guava paste, thinned with warm water","1/2 tsp rose water","1 cup coconut milk","1 tsp matcha, whisked with 2 tbsp hot water","1 cup ice"],
+        steps: ["Stir the guava paste with warm water until pourable and let cool.","Fill a glass with ice and pour in the guava-rose mixture.","Slowly pour the coconut milk over the ice.","Whisk the matcha with hot water until frothy.","Pour the matcha over the back of a spoon so it layers on top."]
+      },
+      {
+        id: "guavarose", title: "Guava Rose Semolina Layer Cake",
+        blurb: "A chunky namoura-style layer cake soaked in guava-rose syrup, filled with matcha cream and pistachio praline.",
+        level: 3, tags: ["sweet","floral","nutty","creamy"],
+        time: "1 hr 20 min", difficulty: "Advanced", diet: ["egg-free"],
+        baseServings: 12, servingsUnit: "servings",
+        origin: "Inspired by namoura, the Syrian semolina cake, layered here with the guava and rose flavors common in Puerto Rican pastries.",
+        substitution: "No pistachio praline? Toasted sliced almonds pressed on top give a similar crunch.",
+        allergens: ["Gluten", "Dairy", "Tree nuts"],
+        ingredients: ["2 cups semolina","1 cup plain yogurt","1/2 cup melted butter","1 tsp baking powder","1 cup sugar","1 cup water + 2 tbsp guava paste + 1 tsp rose water, for syrup","1 cup heavy cream + 1 tsp matcha, whipped","1/2 cup pistachio praline, crushed"],
+        steps: ["Mix semolina, yogurt, butter, and baking powder into a thick batter and spread in two pans.","Bake at 350°F (175°C) for 20-25 minutes until set and golden at the edges.","Simmer sugar, water, guava paste, and rose water into a syrup and pour over the warm layers.","Once cooled, stack the layers with matcha whipped cream between them.","Press crushed pistachio praline over the top layer and chill before slicing."]
+      },
+      {
+        id: "cheesecake", title: "Coffee Cardamom Matcha Kanafeh Cheesecake",
+        blurb: "A dense baked cheesecake on a buttery kataifi crust, finished with coffee caramel and a matcha swirl.",
+        level: 3, tags: ["creamy","nutty","earthy","umami"],
+        time: "1 hr 30 min", difficulty: "Advanced", diet: ["nut-free"],
+        baseServings: 10, servingsUnit: "servings",
+        origin: "Inspired by kanafeh's shredded pastry crust, paired with the slow-brewed coffee tradition found in Puerto Rican kitchens.",
+        substitution: "No sour cream? Full-fat Greek yogurt works in the same amount.",
+        allergens: ["Gluten", "Dairy", "Egg"],
+        ingredients: ["3 cups shredded kataifi","1/3 cup melted butter","24 oz cream cheese, softened","3/4 cup sugar","3 eggs","1/2 cup sour cream","1/2 tsp ground cardamom","1/4 cup strong brewed coffee","1 tsp matcha"],
+        steps: ["Toss kataifi with melted butter and press firmly into a springform pan; pre-bake 10 minutes.","Beat cream cheese and sugar until smooth, then add eggs one at a time.","Mix in sour cream and cardamom and pour over the crust.","Bake in a water bath at 325°F (160°C) for 55-60 minutes until just set in the center.","Cool completely, then top with coffee caramel and a dusting of matcha before slicing."]
+      },
+      {
+        id: "flan", title: "Matcha Flan with Orange Blossom Caramel",
+        blurb: "A custardy flan with matcha, caramel, and a delicate orange blossom note.",
+        level: 3, tags: ["creamy","floral","sweet"],
+        time: "1 hr 5 min", difficulty: "Advanced", diet: ["nut-free"],
+        baseServings: 8, servingsUnit: "servings",
+        origin: "Inspired by flan, the caramel custard found across Puerto Rican tables, brightened here with orange blossom.",
+        substitution: "No orange blossom water? A few drops of vanilla extract keep the custard just as fragrant.",
+        allergens: ["Dairy", "Egg"],
+        ingredients: ["1 cup sugar, for caramel","1 tsp orange blossom water","4 eggs","1 can evaporated milk","1 can condensed milk","1 tbsp matcha"],
+        steps: ["Melt sugar into an amber caramel and stir in orange blossom water; pour into a mold.","Blend eggs, evaporated milk, condensed milk, and matcha until smooth.","Pour custard over the set caramel.","Bake in a water bath at 325°F (160°C) for 45-50 minutes until just set.","Chill overnight, then invert onto a plate to serve."]
+      },
+      {
+        id: "truffles", title: "Cafe con Matcha Pistachio Truffles",
+        blurb: "Rich truffles with Puerto Rican coffee, pistachio, cardamom, and matcha.",
+        level: 3, tags: ["earthy","nutty","umami"],
+        time: "30 min", difficulty: "Easy", diet: ["egg-free"],
+        baseServings: 18, servingsUnit: "truffles", servingsStep: 3,
+        origin: "Inspired by the strong Puerto Rican cafe con leche tradition, paired with a Syrian love of cardamom-spiced sweets.",
+        substitution: "No fresh-brewed coffee? A teaspoon of instant espresso powder dissolved in warm cream works too.",
+        allergens: ["Dairy", "Tree nuts"],
+        ingredients: ["8 oz dark chocolate, chopped","1/2 cup heavy cream","1 tbsp strong brewed coffee","1/4 tsp ground cardamom","1 tsp matcha, for dusting","1/3 cup finely chopped pistachios"],
+        steps: ["Heat cream with coffee until just simmering.","Pour over chopped chocolate and let sit 2 minutes, then stir smooth.","Stir in cardamom and chill the ganache 2 hours.","Scoop and roll into balls.","Roll half in matcha and half in chopped pistachios."]
+      }
+    ];
+
+    // ---------- Matcha dot helper (real CSS dots, not a unicode font glyph) ----------
+    function dotRowHTML(level) {
+      let html = '<span class="dot-row" role="img" aria-label="Matcha strength ' + level + ' of 3">';
+      for (let i = 1; i <= 3; i++) {
+        html += '<span class="dot' + (i <= level ? ' filled' : '') + '"></span>';
+      }
+      html += '</span>';
+      return html;
+    }
+
+    // ---------- Ingredient scaling helpers ----------
+    function parseLeadingQuantity(str) {
+      const match = str.match(/^(\d+\s+\d+\/\d+|\d+\/\d+|\d*\.?\d+)/);
+      if (!match) return null;
+      return { qtyStr: match[0], rest: str.slice(match[0].length) };
+    }
+
+    function quantityToDecimal(qtyStr) {
+      if (qtyStr.includes(" ")) {
+        const [whole, frac] = qtyStr.split(" ");
+        const [n, d] = frac.split("/").map(Number);
+        return Number(whole) + n / d;
+      } else if (qtyStr.includes("/")) {
+        const [n, d] = qtyStr.split("/").map(Number);
+        return n / d;
+      }
+      return Number(qtyStr);
+    }
+
+    function formatQuantity(value) {
+      const rounded = Math.round(value * 4) / 4;
+      const whole = Math.floor(rounded);
+      const frac = Math.round((rounded - whole) * 4) / 4;
+      const fracMap = { 0: "", 0.25: "1/4", 0.5: "1/2", 0.75: "3/4" };
+      const fracStr = fracMap[frac] !== undefined ? fracMap[frac] : "";
+      if (whole === 0 && fracStr) return fracStr;
+      if (fracStr) return whole + " " + fracStr;
+      return String(whole);
+    }
+
+    function scaleIngredientLine(str, factor) {
+      const parsed = parseLeadingQuantity(str);
+      if (!parsed) return str;
+      const scaled = quantityToDecimal(parsed.qtyStr) * factor;
+      return formatQuantity(scaled) + parsed.rest;
+    }
+
+    // ---------- Populate the clickable matcha-strength dot buttons ----------
+    const matchaDotLabels = { 1: "Light", 2: "Medium", 3: "Strong" };
+    document.querySelectorAll(".matcha-dot-button").forEach(btn => {
+      const level = Number(btn.dataset.filter);
+      btn.innerHTML = dotRowHTML(level) + '<span class="dot-button-label">' + matchaDotLabels[level] + '</span>';
+    });
+
+    // ---------- Render cards ----------
+    const grid = document.getElementById("recipeGrid");
+    const featuredIds = new Set(["guavarose", "cheesecake", "flan", "truffles"]);
+    const dietLabels = { "egg-free": "Egg-free", "dairy-free": "Dairy-free", "nut-free": "Nut-free" };
+
+    recipes.forEach(r => {
+      const card = document.createElement("button");
+      card.className = "recipe-card" + (featuredIds.has(r.id) ? " featured" : "");
+      card.dataset.tags = r.tags.join(" ");
+      card.dataset.difficulty = r.difficulty;
+      card.dataset.diet = r.diet.join(" ");
+      card.dataset.level = r.level;
+      card.dataset.id = r.id;
+      const dietChips = r.diet.map(d => `<span class="tag tag-diet">${dietLabels[d]}</span>`).join("");
+      card.innerHTML = `
+        <div class="card-body">
+          <h3>${r.title}</h3>
+          <div class="meta-row">${r.time} &middot; ${r.difficulty}</div>
+          <p class="blurb">${r.blurb}</p>
+          <div class="tags">
+            <span class="tag tag-matcha">${dotRowHTML(r.level)}</span>
+            ${r.tags.map(t => `<span class="tag">${t.charAt(0).toUpperCase() + t.slice(1)}</span>`).join("")}
+            ${dietChips}
+          </div>
+        </div>
+      `;
+      card.addEventListener("click", () => openModal(r));
+      grid.appendChild(card);
+    });
+
+    // ---------- Filter panel tabs ----------
+    const filterTabs = document.querySelectorAll(".filter-tab");
+    const filterPanes = document.querySelectorAll(".filter-pane");
+
+    filterTabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+        filterTabs.forEach(t => { t.classList.remove("active"); t.setAttribute("aria-selected", "false"); });
+        filterPanes.forEach(p => { p.hidden = true; });
+        tab.classList.add("active");
+        tab.setAttribute("aria-selected", "true");
+        document.querySelector('.filter-pane[data-pane="' + tab.dataset.tab + '"]').hidden = false;
+      });
+    });
+
+    function updateTabBadges() {
+      const active = {
+        flavor: !filterState.flavor.includes("all"),
+        matcha: filterState.matchaLevel !== "all",
+        effort: filterState.difficulty !== "all",
+        dietary: filterState.dietary !== "all"
+      };
+      filterTabs.forEach(tab => {
+        const existingDot = tab.querySelector(".tab-dot");
+        if (existingDot) existingDot.remove();
+        if (active[tab.dataset.tab]) {
+          const dot = document.createElement("span");
+          dot.className = "tab-dot";
+          tab.appendChild(dot);
+        }
+      });
+    }
+
+    // ---------- Filtering (flavor + difficulty + dietary + matcha + season shortcuts) ----------
+    const cards = document.querySelectorAll(".recipe-card");
+    const noResults = document.getElementById("noResults");
+    const filterState = { flavor: ["all"], difficulty: "all", dietary: "all", matchaLevel: "all" };
+
+    function applyFilters() {
+      let visibleCount = 0;
+      cards.forEach(card => {
+        const tags = (card.dataset.tags || "").split(" ");
+        const diet = (card.dataset.diet || "").split(" ");
+        const showFlavor = filterState.flavor.includes("all") || filterState.flavor.some(t => tags.includes(t));
+        const showDifficulty = filterState.difficulty === "all" || card.dataset.difficulty === filterState.difficulty;
+        const showDietary = filterState.dietary === "all" || diet.includes(filterState.dietary);
+        const showMatcha = filterState.matchaLevel === "all" || card.dataset.level === filterState.matchaLevel;
+        const show = showFlavor && showDifficulty && showDietary && showMatcha;
+        card.style.display = show ? "flex" : "none";
+        if (show) visibleCount++;
+      });
+      noResults.classList.toggle("show", visibleCount === 0);
+      updateTabBadges();
+    }
+
+    function setGroupActive(barId, activeValues) {
+      document.querySelectorAll("#" + barId + " .filter-button").forEach(btn => {
+        const isActive = activeValues.includes(btn.dataset.filter);
+        btn.classList.toggle("active", isActive);
+        btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+    }
+
+    document.querySelectorAll("#flavorFilterBar .filter-button").forEach(button => {
+      button.addEventListener("click", () => {
+        const value = button.dataset.filter;
+        if (value === "all") {
+          filterState.flavor = ["all"];
+        } else {
+          filterState.flavor = filterState.flavor.filter(v => v !== "all");
+          const idx = filterState.flavor.indexOf(value);
+          if (idx > -1) {
+            filterState.flavor.splice(idx, 1);
+          } else {
+            filterState.flavor.push(value);
+          }
+          if (filterState.flavor.length === 0) filterState.flavor = ["all"];
+        }
+        setGroupActive("flavorFilterBar", filterState.flavor);
+        applyFilters();
+      });
+    });
+
+    document.querySelectorAll("#difficultyFilterBar .filter-button").forEach(button => {
+      button.addEventListener("click", () => {
+        filterState.difficulty = button.dataset.filter;
+        setGroupActive("difficultyFilterBar", [filterState.difficulty]);
+        applyFilters();
+      });
+    });
+
+    document.querySelectorAll("#dietaryFilterBar .filter-button").forEach(button => {
+      button.addEventListener("click", () => {
+        filterState.dietary = button.dataset.filter;
+        setGroupActive("dietaryFilterBar", [filterState.dietary]);
+        applyFilters();
+      });
+    });
+
+    document.querySelectorAll("#matchaFilterBar .filter-button").forEach(button => {
+      button.addEventListener("click", () => {
+        filterState.matchaLevel = button.dataset.filter;
+        setGroupActive("matchaFilterBar", [filterState.matchaLevel]);
+        applyFilters();
+      });
+    });
+
+    document.querySelectorAll(".season-card").forEach(card => {
+      card.addEventListener("click", () => {
+        const tags = (card.dataset.tags || "").split(" ");
+        filterState.flavor = tags;
+        filterState.difficulty = "all";
+        filterState.dietary = "all";
+        filterState.matchaLevel = "all";
+        setGroupActive("flavorFilterBar", tags);
+        setGroupActive("difficultyFilterBar", ["all"]);
+        setGroupActive("dietaryFilterBar", ["all"]);
+        setGroupActive("matchaFilterBar", ["all"]);
+        applyFilters();
+        document.getElementById("recipes").scrollIntoView({ behavior: "smooth" });
+      });
+    });
+
+    // ---------- Recipe modal ----------
+    const overlay = document.getElementById("modalOverlay");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalMeta = document.getElementById("modalMeta");
+    const modalBlurb = document.getElementById("modalBlurb");
+    const modalOrigin = document.getElementById("modalOrigin");
+    const modalLevel = document.getElementById("modalLevel");
+    const modalDietTags = document.getElementById("modalDietTags");
+    const modalIngredients = document.getElementById("modalIngredients");
+    const modalSteps = document.getElementById("modalSteps");
+    const modalSubstitution = document.getElementById("modalSubstitution");
+    const servingsValue = document.getElementById("servingsValue");
+    const servingsMinus = document.getElementById("servingsMinus");
+    const servingsPlus = document.getElementById("servingsPlus");
+    let lastFocused = null;
+    let activeRecipe = null;
+    let currentServings = 1;
+
+    function renderIngredients() {
+      const factor = currentServings / activeRecipe.baseServings;
+      modalIngredients.innerHTML = activeRecipe.ingredients.map(i => `<li>${scaleIngredientLine(i, factor)}</li>`).join("");
+      const displayServings = Number.isInteger(currentServings) ? currentServings : currentServings.toFixed(1);
+      servingsValue.textContent = displayServings + " " + activeRecipe.servingsUnit;
+    }
+
+    function recipeById(id) {
+      return recipes.find(r => r.id === id);
+    }
+
+    function openModal(recipe, updateHash = true) {
+      lastFocused = document.activeElement;
+      activeRecipe = recipe;
+      currentServings = recipe.baseServings;
+      modalTitle.textContent = recipe.title;
+      modalMeta.textContent = recipe.time + " \u00b7 " + recipe.difficulty;
+      modalBlurb.textContent = recipe.blurb;
+      modalOrigin.textContent = recipe.origin;
+      modalLevel.innerHTML = "Matcha " + dotRowHTML(recipe.level);
+      modalDietTags.textContent = recipe.diet.length ? recipe.diet.map(d => dietLabels[d]).join(", ") : "No dietary swaps needed";
+      document.getElementById("modalAllergens").textContent = recipe.allergens && recipe.allergens.length ? recipe.allergens.join(", ") : "No major allergens noted";
+      modalSteps.innerHTML = recipe.steps.map(s => `<li>${s}</li>`).join("");
+      modalSubstitution.textContent = recipe.substitution;
+      renderIngredients();
+      overlay.classList.add("show");
+      document.getElementById("modalClose").focus();
+      if (updateHash) {
+        history.replaceState(null, "", "#recipe-" + recipe.id);
+      }
+    }
+
+    function closeModal() {
+      overlay.classList.remove("show");
+      if (lastFocused) lastFocused.focus();
+      if (location.hash.startsWith("#recipe-")) {
+        history.replaceState(null, "", "#recipes");
+      }
+    }
+
+    servingsMinus.addEventListener("click", () => {
+      const step = activeRecipe.servingsStep || 1;
+      const min = activeRecipe.minServings || 1;
+      currentServings = Math.max(min, Math.round((currentServings - step) * 100) / 100);
+      renderIngredients();
+    });
+    servingsPlus.addEventListener("click", () => {
+      const step = activeRecipe.servingsStep || 1;
+      currentServings = Math.round((currentServings + step) * 100) / 100;
+      renderIngredients();
+    });
+
+    document.getElementById("modalClose").addEventListener("click", closeModal);
+    overlay.addEventListener("click", (e) => { if (e.target === overlay) closeModal(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && overlay.classList.contains("show")) closeModal(); });
+
+    // ---------- Deep-linking: open a recipe directly from #recipe-<id> in the URL ----------
+    function openFromHash() {
+      const match = location.hash.match(/^#recipe-(.+)$/);
+      if (!match) return;
+      const recipe = recipeById(match[1]);
+      if (recipe) openModal(recipe, false);
+    }
+    window.addEventListener("hashchange", openFromHash);
+    openFromHash();
+
+    // ---------- Scrollspy for nav ----------
+    const navLinks = document.querySelectorAll("#mainNav a");
+    const sections = Array.from(navLinks).map(link => document.getElementById(link.dataset.section)).filter(Boolean);
+
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(link => link.classList.toggle("active", link.dataset.section === id));
+        }
+      });
+    }, { rootMargin: "-40% 0px -55% 0px", threshold: 0 });
+
+    sections.forEach(sec => spy.observe(sec));
+
+    // ---------- Back to top ----------
+    const backToTop = document.getElementById("backToTop");
+    window.addEventListener("scroll", () => {
+      backToTop.classList.toggle("show", window.scrollY > 500);
+    });
+    backToTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  </script>
+</body>
+</html>
