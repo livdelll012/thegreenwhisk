@@ -184,6 +184,24 @@
       border-color: var(--deep);
     }
 
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      margin-left: 4px;
+      border-radius: 50%;
+      border: 1px solid rgba(47, 74, 52, 0.14);
+      background: rgba(223, 233, 207, 0.72);
+      color: var(--deep);
+      font-size: 1.1rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: background 150ms ease, transform 150ms ease;
+    }
+    .theme-toggle:hover { background: var(--pistachio); transform: rotate(-8deg); }
+
     .hero {
       min-height: 88vh;
       display: grid;
@@ -209,6 +227,28 @@
       font-size: clamp(1.1rem, 2vw, 1.45rem);
       line-height: 1.65;
       color: var(--muted);
+    }
+
+    /* ---- Hero whisk: soft shimmer sweep (tilt animation removed) ---- */
+    .whisk-word {
+      display: inline-block;
+      position: relative;
+    }
+    .whisk-shimmer {
+      position: absolute;
+      inset: -4% -8%;
+      background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.65) 50%, transparent 65%);
+      background-size: 260% 260%;
+      background-position: 180% 0%;
+      mix-blend-mode: overlay;
+      opacity: 0;
+      pointer-events: none;
+      animation: whiskShimmer 5.5s ease-in-out infinite;
+    }
+    @keyframes whiskShimmer {
+      0%, 55% { opacity: 0; background-position: 180% 0%; }
+      62% { opacity: 0.9; }
+      78%, 100% { opacity: 0; background-position: -60% 0%; }
     }
 
     .hero-actions {
@@ -274,6 +314,7 @@
 
     .about-card .section-title {
       text-align: left;
+      margin-bottom: 34px;
     }
 
     .about-card p {
@@ -338,7 +379,7 @@
       display: flex;
       flex-direction: column;
       min-height: 320px;
-      padding: 22px;
+      padding: 0;
       border-radius: var(--radius);
       background: rgba(255, 250, 240, 0.9);
       border: 1px solid rgba(47, 74, 52, 0.12);
@@ -346,6 +387,7 @@
       cursor: pointer;
       text-align: left;
       font-family: inherit;
+      overflow: hidden;
       transition: transform 180ms ease, box-shadow 180ms ease;
     }
 
@@ -362,6 +404,39 @@
 
     @media (max-width: 640px) {
       .recipe-card.featured { grid-column: span 1; }
+    }
+
+    .card-photo {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--sage), var(--pistachio));
+    }
+
+    .card-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-photo.no-photo::after {
+      content: "\1F375";
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      opacity: 0.55;
+    }
+
+    .card-body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
     }
 
     .recipe-card h3 {
@@ -624,6 +699,24 @@
       position: relative;
     }
 
+    .modal-photo {
+      width: calc(100% + 2 * clamp(24px, 5vw, 42px));
+      margin: calc(-1 * clamp(24px, 5vw, 42px)) calc(-1 * clamp(24px, 5vw, 42px)) 20px;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--sage), var(--pistachio));
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+
+    .modal-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .modal-photo[hidden] { display: none; }
+
     .modal-close {
       position: absolute;
       top: 18px;
@@ -637,6 +730,7 @@
       font-size: 1.1rem;
       cursor: pointer;
       line-height: 1;
+      z-index: 2;
     }
 
     .modal h3 {
@@ -716,6 +810,158 @@
     .servings-control .step-btn:hover { background: var(--pistachio); }
     .servings-control .servings-value { min-width: 90px; text-align: center; }
 
+    /* ---- Rescale animation: quantities pop in with a soft matcha flash ---- */
+    @keyframes qtyPop {
+      0% { opacity: 0; transform: translateY(6px) scale(0.96); color: var(--matcha); }
+      55% { opacity: 1; transform: translateY(-1px) scale(1.02); color: var(--matcha); }
+      100% { opacity: 1; transform: translateY(0) scale(1); color: inherit; }
+    }
+    .qty-pop {
+      display: inline-block;
+      animation: qtyPop 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    #modalIngredients li, #modalSteps li { overflow: hidden; }
+
+    /* ---- Modal prev/next navigation arrows ---- */
+    .modal-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid rgba(47, 74, 52, 0.18);
+      background: rgba(255, 250, 240, 0.88);
+      color: var(--deep);
+      font-size: 1.3rem;
+      cursor: pointer;
+      z-index: 210;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 26px rgba(47, 74, 52, 0.16);
+      transition: background 150ms ease, transform 150ms ease;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .modal-overlay.show ~ .modal-nav,
+    .modal-overlay.show + .modal-nav {
+      display: flex;
+    }
+    .modal-nav.prev { left: clamp(8px, 3vw, 28px); }
+    .modal-nav.next { right: clamp(8px, 3vw, 28px); }
+    .modal-nav:hover { background: var(--pistachio); }
+    .modal-nav:hover.prev { transform: translateY(-50%) translateX(-2px); }
+    .modal-nav:hover.next { transform: translateY(-50%) translateX(2px); }
+    @media (max-width: 700px) {
+      .modal-nav { display: none !important; }
+    }
+
+    /* ---- Copy ingredients button ---- */
+    .ingredients-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 22px 0 10px;
+    }
+    .ingredients-head h4 { margin: 0; }
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      border: 1px solid rgba(47, 74, 52, 0.16);
+      border-radius: 999px;
+      background: var(--soft-sage);
+      color: var(--deep);
+      font-family: Arial, sans-serif;
+      font-weight: 800;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 7px 12px;
+      transition: background 150ms ease, transform 150ms ease;
+    }
+    .copy-btn:hover { background: var(--pistachio); }
+    .copy-btn:active { transform: scale(0.96); }
+    .copy-btn.copied {
+      background: var(--matcha);
+      color: white;
+      animation: qtyPop 380ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ---- Dark mode: deep matcha / charcoal palette ---- */
+    html.dark {
+      --cream: #161d15;
+      --paper: #1f2a1c;
+      --matcha: #93c56e;
+      --deep: #e9f2de;
+      --sage: #2c3a26;
+      --soft-sage: #24301f;
+      --guava: #e2938d;
+      --pistachio: #46612f;
+      --ink: #edf3e5;
+      --muted: #b6c7a9;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.5);
+      --focus: #8fd0f0;
+    }
+    html.dark body {
+      background:
+        radial-gradient(circle at top left, rgba(217, 133, 128, 0.08), transparent 28rem),
+        radial-gradient(circle at top right, rgba(147, 197, 110, 0.12), transparent 30rem),
+        var(--cream);
+    }
+    html.dark .topbar {
+      background: rgba(22, 29, 21, 0.92);
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+    }
+    html.dark .nav a {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+    html.dark .nav a.active { background: var(--matcha); color: #14210f; border-color: var(--matcha); }
+    html.dark .theme-toggle { background: rgba(255, 255, 255, 0.07); border-color: rgba(255, 255, 255, 0.12); }
+    html.dark .recipe-card,
+    html.dark .about-card,
+    html.dark .season-card,
+    html.dark .playlist-card,
+    html.dark .filter-panel,
+    html.dark .modal,
+    html.dark .no-results {
+      background: rgba(31, 42, 28, 0.92);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+    html.dark .recipe-card.featured {
+      background: linear-gradient(135deg, rgba(70, 97, 47, 0.45), rgba(31, 42, 28, 0.94));
+    }
+    html.dark .card-photo,
+    html.dark .modal-photo {
+      background: linear-gradient(135deg, var(--sage), var(--pistachio));
+    }
+    html.dark .tag { background: rgba(255, 255, 255, 0.07); border-color: rgba(255, 255, 255, 0.1); }
+    html.dark .tag.tag-matcha { background: rgba(147, 197, 110, 0.28); }
+    html.dark .tag.tag-diet { color: #1c1c1c; }
+    html.dark .filter-button { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.1); }
+    html.dark .filter-button.active,
+    html.dark .filter-button:hover { background: var(--matcha); color: #14210f; }
+    html.dark .filter-tab.active { background: var(--matcha); color: #14210f; }
+    html.dark .filter-tab:hover { background: rgba(255, 255, 255, 0.08); color: var(--deep); }
+    html.dark .copy-btn { background: rgba(255, 255, 255, 0.07); }
+    html.dark .copy-btn:hover { background: var(--pistachio); }
+    html.dark .modal-close,
+    html.dark .servings-control .step-btn,
+    html.dark .modal-nav { background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.14); }
+    html.dark .substitution-note { background: rgba(255, 255, 255, 0.06); }
+    html.dark .button.primary { background: var(--matcha); color: #12200d; }
+    html.dark .button.secondary { background: rgba(255, 255, 255, 0.08); }
+    html.dark .track-list li { border-top-color: rgba(255, 255, 255, 0.08); }
+    html.dark footer { color: var(--muted); }
+    html.dark,
+    html.dark body {
+      transition: background 300ms ease;
+    }
+
     @media (max-width: 620px) {
       .hero { min-height: 78vh; }
       h1 { font-size: clamp(3.2rem, 16vw, 5.5rem); }
@@ -747,13 +993,14 @@
       <a href="#recipes" data-section="recipes">Recipes</a>
       <a href="#seasons" data-section="seasons">Seasons</a>
       <a href="#playlist" data-section="playlist">Playlist</a>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false">&#9789;</button>
     </nav>
   </header>
 
   <main>
     <section class="hero" id="top">
       <div class="hero-inner">
-        <h1>The Green<br>Whisk</h1>
+        <h1>The Green<br><span class="whisk-word">Whisk<span class="whisk-shimmer" aria-hidden="true"></span></span></h1>
         <p class="subtitle">
           A matcha-green recipe journal blending Syrian sweets, Puerto Rican comfort flavors, and New Haven study-cafe nostalgia.
         </p>
@@ -768,9 +1015,6 @@
       <div class="section-inner">
         <div class="about-card">
           <h2 class="section-title">A fusion table, set in matcha green</h2>
-           </p>
-          <p>
-
           <p>
             The Green Whisk started with a Syrian kitchen, a Puerto Rican culinary tradition, and a small matcha habit picked up while studying in New Haven, Connecticut. None of those worlds usually share a table, so this collection imagines what happens when they do.
           </p>
@@ -920,6 +1164,7 @@
   <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal">
       <button class="modal-close" id="modalClose" aria-label="Close recipe">&#10005;</button>
+      <div class="modal-photo" id="modalPhoto" hidden><img id="modalPhotoImg" alt=""></div>
       <h3 id="modalTitle"></h3>
       <div class="meta-row" id="modalMeta"></div>
       <p class="blurb" id="modalBlurb"></p>
@@ -934,7 +1179,10 @@
         <button class="step-btn" id="servingsPlus" aria-label="More servings">+</button>
       </div>
 
-      <h4>Ingredients</h4>
+      <div class="ingredients-head">
+        <h4>Ingredients</h4>
+        <button class="copy-btn" id="copyIngredientsBtn" type="button">Copy list</button>
+      </div>
       <ul id="modalIngredients"></ul>
       <h4>Method</h4>
       <ol id="modalSteps"></ol>
@@ -942,12 +1190,17 @@
       <p class="substitution-note" id="modalSubstitution"></p>
     </div>
   </div>
+  <button class="modal-nav prev" id="modalPrev" type="button" aria-label="Previous recipe">&#8249;</button>
+  <button class="modal-nav next" id="modalNext" type="button" aria-label="Next recipe">&#8250;</button>
 
   <script>
     // ---------- Recipe data (used for cards + modal detail) ----------
+    // Photos: drop a "photos" folder next to this HTML file. Name each image
+    // to match the "image" field below (e.g. photos/maamoul.png). If a file
+    // is missing, the card just shows a soft placeholder instead of breaking.
     const recipes = [
       {
-        id: "maamoul", title: "Guava Pistachio Matcha Ma'amoul",
+        id: "maamoul", title: "Guava Pistachio Matcha Ma'amoul", image: "photos/maamoul.png",
         blurb: "Semolina cookies with matcha dough, guava paste, pistachio, and a soft floral finish.",
         level: 2, tags: ["sweet","nutty","floral","earthy"],
         time: "50 min", difficulty: "Medium", diet: ["egg-free"],
@@ -959,7 +1212,7 @@
         steps: ["Combine semolina, butter, and matcha; rest the dough 2 hours.","Roll into balls and hollow the centers.","Fill with guava paste and pistachio, then seal and shape in a mold.","Bake at 350°F (175°C) for 18-20 minutes until pale gold.","Brush lightly with orange blossom water and dust with powdered sugar once cool."]
       },
       {
-        id: "muhallabia", title: "Matcha Coquito Muhallabia",
+        id: "muhallabia", title: "Matcha Coquito Muhallabia", image: "photos/muhallabia.png",
         blurb: "A silky milk pudding inspired by coquito, coconut, cinnamon, and Syrian muhallabia.",
         level: 1, tags: ["sweet","creamy"],
         time: "20 min", difficulty: "Easy", diet: ["egg-free","nut-free"],
@@ -971,7 +1224,7 @@
         steps: ["Whisk cornstarch into a splash of cold milk until smooth.","Warm the coconut milk, milk, sugar, and cinnamon in a saucepan.","Stir in the cornstarch slurry and matcha; cook until thickened.","Pour into cups and chill at least 3 hours.","Top with toasted coconut before serving."]
       },
       {
-        id: "tresleches", title: "Matcha Baklava Tres Leches",
+        id: "tresleches", title: "Matcha Baklava Tres Leches", image: "photos/tresleches.png",
         blurb: "Milk-soaked cake with pistachio, phyllo crunch, matcha cream, and orange blossom syrup.",
         level: 2, tags: ["sweet","floral","creamy","nutty"],
         time: "1 hr 10 min", difficulty: "Advanced", diet: [],
@@ -983,7 +1236,7 @@
         steps: ["Poke the cooled sponge cake all over.","Blend the three milks and pour slowly over the cake.","Chill 4 hours so the cake fully absorbs the milk.","Top with matcha whipped cream and crushed phyllo-pistachio mix.","Finish with a drizzle of orange blossom syrup."]
       },
       {
-        id: "quesitos", title: "Matcha Quesitos with Date Filling",
+        id: "quesitos", title: "Matcha Quesitos with Date Filling", image: "photos/quesitos.png",
         blurb: "Flaky Puerto Rican-style pastries with cream cheese, date paste, and matcha glaze.",
         level: 1, tags: ["sweet","creamy","earthy"],
         time: "45 min", difficulty: "Medium", diet: ["nut-free"],
@@ -995,7 +1248,7 @@
         steps: ["Beat cream cheese, date paste, and sugar until smooth.","Cut pastry into squares and add filling to each center.","Fold corners in and pinch to seal; brush with egg wash.","Bake at 400°F (200°C) for 18-20 minutes until golden.","Whisk powdered sugar, matcha, and milk into a glaze and drizzle over warm pastries."]
       },
       {
-        id: "atayef", title: "Matcha Atayef Pancakes",
+        id: "atayef", title: "Matcha Atayef", image: "photos/atayef.png",
         blurb: "Mini stuffed pancakes with sweet ricotta, guava cream, and matcha honey drizzle.",
         level: 2, tags: ["sweet","floral","tart","fruity"],
         time: "40 min", difficulty: "Medium", diet: ["egg-free","nut-free"],
@@ -1007,7 +1260,7 @@
         steps: ["Whisk flour, yeast, and warm water into a thin batter; rest 45 minutes.","Cook small rounds on a dry skillet until bubbles set, one side only.","Fold cooled pancakes around ricotta and a spoon of guava jam.","Warm honey with matcha until smooth.","Drizzle over the folded pancakes just before serving."]
       },
       {
-        id: "arroz", title: "Matcha Arroz con Leche with Cardamom",
+        id: "arroz", title: "Matcha Arroz con Leche with Cardamom", image: "photos/arroz.png",
         blurb: "Puerto Rican rice pudding warmed with cardamom and finished with a gentle matcha swirl.",
         level: 1, tags: ["creamy","earthy","sweet"],
         time: "35 min", difficulty: "Easy", diet: ["egg-free","nut-free"],
@@ -1019,7 +1272,7 @@
         steps: ["Simmer rice with 2 cups water until just tender.","Add milk, sugar, cardamom, and cinnamon; simmer low, stirring often.","Cook 25-30 minutes until thick and creamy.","Remove whole spices.","Swirl the matcha paste through just before serving, warm or chilled."]
       },
       {
-        id: "kanafeh", title: "Matcha Kanafeh Bread Pudding",
+        id: "kanafeh", title: "Matcha Kanafeh Bread Pudding", image: "photos/kanafeh.png",
         blurb: "Crisp kataifi, sweet cheese, bread pudding custard, and matcha condensed milk.",
         level: 2, tags: ["umami","sweet","creamy"],
         time: "50 min", difficulty: "Medium", diet: ["nut-free"],
@@ -1031,7 +1284,7 @@
         steps: ["Toss kataifi with melted butter and press half into a baking dish.","Layer cheese over the base, then top with remaining kataifi.","Whisk eggs and milk and pour evenly over the top.","Bake at 350°F (175°C) for 30-35 minutes until golden and set.","Warm the condensed milk with matcha and pour over just before serving."]
       },
       {
-        id: "basbousa", title: "Coconut Matcha Basbousa",
+        id: "basbousa", title: "Coconut Matcha Basbousa", image: "photos/basbousa.png",
         blurb: "Semolina cake with coconut, lime zest, matcha syrup, and a soft tropical edge.",
         level: 2, tags: ["sweet","tart","citrus"],
         time: "40 min", difficulty: "Easy", diet: ["egg-free","nut-free"],
@@ -1043,7 +1296,7 @@
         steps: ["Mix semolina, coconut, yogurt, sugar, and lime zest into a thick batter.","Spread into a greased pan and score into diamonds.","Bake at 350°F (175°C) for 25-30 minutes until golden.","Simmer sugar, water, and matcha into a light syrup.","Pour the warm syrup over the hot cake and let it soak in fully."]
       },
       {
-        id: "latte", title: "Iced Guava Rose Matcha Latte",
+        id: "latte", title: "Iced Guava Rose Matcha Latte", image: "photos/latte.png",
         blurb: "A layered iced drink with guava, rose, coconut milk, and bright green matcha.",
         level: 2, tags: ["sweet","tart","floral"],
         time: "10 min", difficulty: "Easy", diet: ["egg-free","dairy-free","nut-free"],
@@ -1055,7 +1308,7 @@
         steps: ["Stir the guava paste with warm water until pourable and let cool.","Fill a glass with ice and pour in the guava-rose mixture.","Slowly pour the coconut milk over the ice.","Whisk the matcha with hot water until frothy.","Pour the matcha over the back of a spoon so it layers on top."]
       },
       {
-        id: "guavarose", title: "Guava Rose Semolina Layer Cake",
+        id: "guavarose", title: "Guava Rose Semolina Layer Cake", image: "photos/guavarose.png",
         blurb: "A chunky namoura-style layer cake soaked in guava-rose syrup, filled with matcha cream and pistachio praline.",
         level: 3, tags: ["sweet","floral","nutty","creamy"],
         time: "1 hr 20 min", difficulty: "Advanced", diet: ["egg-free"],
@@ -1067,7 +1320,7 @@
         steps: ["Mix semolina, yogurt, butter, and baking powder into a thick batter and spread in two pans.","Bake at 350°F (175°C) for 20-25 minutes until set and golden at the edges.","Simmer sugar, water, guava paste, and rose water into a syrup and pour over the warm layers.","Once cooled, stack the layers with matcha whipped cream between them.","Press crushed pistachio praline over the top layer and chill before slicing."]
       },
       {
-        id: "cheesecake", title: "Coffee Cardamom Matcha Kanafeh Cheesecake",
+        id: "cheesecake", title: "Coffee Cardamom Matcha Kanafeh Cheesecake", image: "photos/cheesecake.png",
         blurb: "A dense baked cheesecake on a buttery kataifi crust, finished with coffee caramel and a matcha swirl.",
         level: 3, tags: ["creamy","nutty","earthy","umami"],
         time: "1 hr 30 min", difficulty: "Advanced", diet: ["nut-free"],
@@ -1079,7 +1332,7 @@
         steps: ["Toss kataifi with melted butter and press firmly into a springform pan; pre-bake 10 minutes.","Beat cream cheese and sugar until smooth, then add eggs one at a time.","Mix in sour cream and cardamom and pour over the crust.","Bake in a water bath at 325°F (160°C) for 55-60 minutes until just set in the center.","Cool completely, then top with coffee caramel and a dusting of matcha before slicing."]
       },
       {
-        id: "flan", title: "Matcha Flan with Orange Blossom Caramel",
+        id: "flan", title: "Matcha Flan with Orange Blossom Caramel", image: "photos/flan.png",
         blurb: "A custardy flan with matcha, caramel, and a delicate orange blossom note.",
         level: 3, tags: ["creamy","floral","sweet"],
         time: "1 hr 5 min", difficulty: "Advanced", diet: ["nut-free"],
@@ -1089,18 +1342,6 @@
         allergens: ["Dairy", "Egg"],
         ingredients: ["1 cup sugar, for caramel","1 tsp orange blossom water","4 eggs","1 can evaporated milk","1 can condensed milk","1 tbsp matcha"],
         steps: ["Melt sugar into an amber caramel and stir in orange blossom water; pour into a mold.","Blend eggs, evaporated milk, condensed milk, and matcha until smooth.","Pour custard over the set caramel.","Bake in a water bath at 325°F (160°C) for 45-50 minutes until just set.","Chill overnight, then invert onto a plate to serve."]
-      },
-      {
-        id: "truffles", title: "Cafe con Matcha Pistachio Truffles",
-        blurb: "Rich truffles with Puerto Rican coffee, pistachio, cardamom, and matcha.",
-        level: 3, tags: ["earthy","nutty","umami"],
-        time: "30 min", difficulty: "Easy", diet: ["egg-free"],
-        baseServings: 18, servingsUnit: "truffles", servingsStep: 3,
-        origin: "Inspired by the strong Puerto Rican cafe con leche tradition, paired with a Syrian love of cardamom-spiced sweets.",
-        substitution: "No fresh-brewed coffee? A teaspoon of instant espresso powder dissolved in warm cream works too.",
-        allergens: ["Dairy", "Tree nuts"],
-        ingredients: ["8 oz dark chocolate, chopped","1/2 cup heavy cream","1 tbsp strong brewed coffee","1/4 tsp ground cardamom","1 tsp matcha, for dusting","1/3 cup finely chopped pistachios"],
-        steps: ["Heat cream with coffee until just simmering.","Pour over chopped chocolate and let sit 2 minutes, then stir smooth.","Stir in cardamom and chill the ganache 2 hours.","Scoop and roll into balls.","Roll half in matcha and half in chopped pistachios."]
       }
     ];
 
@@ -1160,7 +1401,7 @@
 
     // ---------- Render cards ----------
     const grid = document.getElementById("recipeGrid");
-    const featuredIds = new Set(["guavarose", "cheesecake", "flan", "truffles"]);
+    const featuredIds = new Set(["guavarose", "cheesecake", "flan"]);
     const dietLabels = { "egg-free": "Egg-free", "dairy-free": "Dairy-free", "nut-free": "Nut-free" };
 
     recipes.forEach(r => {
@@ -1172,7 +1413,11 @@
       card.dataset.level = r.level;
       card.dataset.id = r.id;
       const dietChips = r.diet.map(d => `<span class="tag tag-diet">${dietLabels[d]}</span>`).join("");
+      const photoHTML = r.image
+        ? `<div class="card-photo"><img src="${r.image}" alt="${r.title}" loading="lazy" onerror="this.parentElement.classList.add('no-photo'); this.remove();"></div>`
+        : `<div class="card-photo no-photo"></div>`;
       card.innerHTML = `
+        ${photoHTML}
         <div class="card-body">
           <h3>${r.title}</h3>
           <div class="meta-row">${r.time} &middot; ${r.difficulty}</div>
@@ -1321,6 +1566,8 @@
     const modalIngredients = document.getElementById("modalIngredients");
     const modalSteps = document.getElementById("modalSteps");
     const modalSubstitution = document.getElementById("modalSubstitution");
+    const modalPhoto = document.getElementById("modalPhoto");
+    const modalPhotoImg = document.getElementById("modalPhotoImg");
     const servingsValue = document.getElementById("servingsValue");
     const servingsMinus = document.getElementById("servingsMinus");
     const servingsPlus = document.getElementById("servingsPlus");
@@ -1330,9 +1577,11 @@
 
     function renderIngredients() {
       const factor = currentServings / activeRecipe.baseServings;
-      modalIngredients.innerHTML = activeRecipe.ingredients.map(i => `<li>${scaleIngredientLine(i, factor)}</li>`).join("");
+      modalIngredients.innerHTML = activeRecipe.ingredients
+        .map((i, idx) => `<li><span class="qty-pop" style="animation-delay:${idx * 18}ms">${scaleIngredientLine(i, factor)}</span></li>`)
+        .join("");
       const displayServings = Number.isInteger(currentServings) ? currentServings : currentServings.toFixed(1);
-      servingsValue.textContent = displayServings + " " + activeRecipe.servingsUnit;
+      servingsValue.innerHTML = `<span class="qty-pop">${displayServings} ${activeRecipe.servingsUnit}</span>`;
     }
 
     function recipeById(id) {
@@ -1350,8 +1599,18 @@
       modalLevel.innerHTML = "Matcha " + dotRowHTML(recipe.level);
       modalDietTags.textContent = recipe.diet.length ? recipe.diet.map(d => dietLabels[d]).join(", ") : "No dietary swaps needed";
       document.getElementById("modalAllergens").textContent = recipe.allergens && recipe.allergens.length ? recipe.allergens.join(", ") : "No major allergens noted";
-      modalSteps.innerHTML = recipe.steps.map(s => `<li>${s}</li>`).join("");
+      modalSteps.innerHTML = recipe.steps
+        .map((s, idx) => `<li><span class="qty-pop" style="animation-delay:${idx * 30}ms">${s}</span></li>`)
+        .join("");
       modalSubstitution.textContent = recipe.substitution;
+      if (recipe.image) {
+        modalPhotoImg.onerror = () => { modalPhoto.hidden = true; };
+        modalPhotoImg.src = recipe.image;
+        modalPhotoImg.alt = recipe.title;
+        modalPhoto.hidden = false;
+      } else {
+        modalPhoto.hidden = true;
+      }
       renderIngredients();
       overlay.classList.add("show");
       document.getElementById("modalClose").focus();
@@ -1382,7 +1641,79 @@
 
     document.getElementById("modalClose").addEventListener("click", closeModal);
     overlay.addEventListener("click", (e) => { if (e.target === overlay) closeModal(); });
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && overlay.classList.contains("show")) closeModal(); });
+    document.addEventListener("keydown", (e) => {
+      if (!overlay.classList.contains("show")) return;
+      if (e.key === "Escape") closeModal();
+      if (e.key === "ArrowRight") showAdjacentRecipe(1);
+      if (e.key === "ArrowLeft") showAdjacentRecipe(-1);
+    });
+
+    // ---------- Prev / next recipe navigation (keyboard, on-screen arrows, swipe) ----------
+    function showAdjacentRecipe(direction) {
+      if (!activeRecipe) return;
+      const idx = recipes.findIndex(r => r.id === activeRecipe.id);
+      if (idx === -1) return;
+      const nextIdx = (idx + direction + recipes.length) % recipes.length;
+      openModal(recipes[nextIdx]);
+    }
+    document.getElementById("modalPrev").addEventListener("click", () => showAdjacentRecipe(-1));
+    document.getElementById("modalNext").addEventListener("click", () => showAdjacentRecipe(1));
+
+    // ---------- Swipe gestures on the modal: left/right to browse, down to close ----------
+    const modalCard = document.querySelector(".modal");
+    let touchStartX = 0, touchStartY = 0, touchActive = false;
+    modalCard.addEventListener("touchstart", (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchActive = true;
+    }, { passive: true });
+    modalCard.addEventListener("touchend", (e) => {
+      if (!touchActive) return;
+      touchActive = false;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      const absX = Math.abs(dx), absY = Math.abs(dy);
+      if (absX > absY && absX > 55) {
+        showAdjacentRecipe(dx < 0 ? 1 : -1);
+      } else if (dy > 90 && absY > absX) {
+        closeModal();
+      }
+    }, { passive: true });
+
+    // ---------- Copy ingredients (rescaled) to clipboard ----------
+    const copyIngredientsBtn = document.getElementById("copyIngredientsBtn");
+    copyIngredientsBtn.addEventListener("click", () => {
+      if (!activeRecipe) return;
+      const lines = Array.from(modalIngredients.querySelectorAll("li")).map(li => "\u2022 " + li.textContent.trim());
+      const servingsLabel = servingsValue.textContent.trim();
+      const text = activeRecipe.title + " (" + servingsLabel + ")\n" + lines.join("\n");
+      const flash = (label) => {
+        copyIngredientsBtn.textContent = label;
+        copyIngredientsBtn.classList.add("copied");
+        setTimeout(() => {
+          copyIngredientsBtn.classList.remove("copied");
+          copyIngredientsBtn.textContent = "Copy list";
+        }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => flash("Copied \u2713")).catch(() => flash("Couldn't copy"));
+      } else {
+        flash("Couldn't copy");
+      }
+    });
+
+    // ---------- Dark mode toggle: deep matcha / charcoal palette ----------
+    const themeToggle = document.getElementById("themeToggle");
+    function setTheme(isDark) {
+      document.documentElement.classList.toggle("dark", isDark);
+      themeToggle.setAttribute("aria-pressed", isDark ? "true" : "false");
+      themeToggle.innerHTML = isDark ? "&#9728;" : "&#9789;";
+      try { localStorage.setItem("greenWhiskTheme", isDark ? "dark" : "light"); } catch (e) {}
+    }
+    let storedTheme = null;
+    try { storedTheme = localStorage.getItem("greenWhiskTheme"); } catch (e) {}
+    setTheme(storedTheme === "dark");
+    themeToggle.addEventListener("click", () => setTheme(!document.documentElement.classList.contains("dark")));
 
     // ---------- Deep-linking: open a recipe directly from #recipe-<id> in the URL ----------
     function openFromHash() {
